@@ -1,0 +1,24 @@
+#rowTitle {
+  margin-top: 20px;
+}
+
+#rowContent {
+  margin-top: 60px;
+}
+
+#title {
+  font-size: 40px;
+}
+
+#configuration {
+  padding: 30px;
+  border-style: outset;
+}
+
+#created, #begin, #end, #repetition {
+
+  font-size: 24px;
+
+}
+
+

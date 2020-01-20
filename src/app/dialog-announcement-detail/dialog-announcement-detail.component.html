@@ -1,0 +1,38 @@
+<div class="container-fluid">
+
+  <div class="row" id="rowTitle">
+    <h2 class="col-md-12 center-block text-center" id="title">{{getTitle()}}</h2>
+  </div>
+
+  <div class="row" id="rowContent">
+
+    <div class="col-md-4" id="configuration">
+
+      <tr id="created">
+        <td><label>Angelegt am: &nbsp;&nbsp;&nbsp;&nbsp;</label></td>
+        <td><span>{{announcement.created | date: 'dd-MM-yyyy'}}</span></td>
+      </tr>
+      <tr id="begin">
+        <td><label>Begin:</label></td>
+        <td><span>{{getBegin() | date: 'dd-MM-yyyy'}}</span></td>
+      </tr>
+      <tr id="end">
+        <td><label>Ende:</label></td>
+        <td><span>{{getEnd() | date: 'dd-MM-yyyy'}}</span></td>
+      </tr>
+      <tr id="repetition">
+        <td><label>Wiederholung</label></td>
+        <td><span>{{getRepetation()}}</span></td>
+      </tr>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-6">
+      <img src="{{data}}" *ngIf="data" alt="Your image" style="display: block"/>
+      <span>{{getContentOfText()}}</span>
+    </div>
+
+  </div>
+
+</div>
+
+

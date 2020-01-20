@@ -1,0 +1,21 @@
+#newButton {
+  padding: 20px;
+}
+
+#tableAnnouncements {
+  overflow: auto;
+  max-height: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-row:hover {
+  background-color: rgba(172, 172, 172, 0.37);
+}
+
+.header {
+  font-size: 20px;
+}
+

@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <!-- Breadcrumbs-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/dashboard']">Dashboard</a>
+    </li>
+    <li class="breadcrumb-item active">
+      <a [routerLink]="['/announcements']">Announcements</a>
+    </li>
+    <li class="breadcrumb-item active">Flyer</li>
+  </ol>
+
+  <div class="container">
+    <div class="row">
+      <!--    Flyer -->
+      <div class="col-md-6">
+        <form [formGroup]="flyerForm">
+
+
+          <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header text-left">
+              <h1>Flyer</h1>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+
+              <div class="input-group mb-3">
+                <div class="custom-file">
+                  <label class="custom-file-label" for="inputGroupFile02">Datei auswählen</label>
+                  <input type="file"
+                         class="custom-file-input"
+                         id="inputGroupFile02"
+                         accept="image/jpeg, image/png"
+                         (change)="handleFileInput($event.target.files)">
+                </div>
+              </div>
+
+              <h3>Konfiguration</h3>
+              <div class="modal-footer small">
+                <div class="form-group">
+                  <label>Wiederholung</label>
+                  <input class="form-control"
+                         formControlName="rate"/>
+                </div>
+                <mat-form-field>
+                  <input matInput [matDatepicker]="beginDatePicker" placeholder="Begin" formControlName="begin">
+                  <mat-datepicker-toggle matSuffix [for]="beginDatePicker"></mat-datepicker-toggle>
+                  <mat-datepicker #beginDatePicker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input matInput [matDatepicker]="endDatePicker" placeholder="Ende" formControlName="end">
+                  <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                  <mat-datepicker #endDatePicker></mat-datepicker>
+                </mat-form-field>
+
+              </div>
+            </div>
+
+            <button class="btn-sm btn-success" (click)="addAnnouncement()">Anlegen</button>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
