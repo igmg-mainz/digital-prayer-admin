@@ -1,0 +1,26 @@
+.breadcrumb {
+  margin-top: 1rem;
+  padding: 20px;
+  font-size: 20px;
+}
+
+#title {
+  width: 10rem;
+}
+
+#repetition {
+  width: 3rem;
+}
+
+#fileName {
+  padding: 10px;
+  border-left: 6px solid green;
+  background-color: rgba(220, 220, 220, 0.4);
+  width: fit-content;
+}
+
+#cancel {
+  margin-left: 5px;
+  height: 40px;
+  width: 40px;
+}

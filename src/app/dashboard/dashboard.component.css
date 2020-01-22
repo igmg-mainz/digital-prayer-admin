@@ -11,14 +11,20 @@
   padding-bottom: 80px;
 }
 
+#h2announcement {
+  font-size: 2rem;
+}
+
+.details {
+  font-size: 1.2rem;
+}
+
 .breadcrumb {
   padding: 20px;
   font-size: 20px;
 }
 
-#card-announcements2 {
-  font-size: 40px;
-}
+
 
 
 

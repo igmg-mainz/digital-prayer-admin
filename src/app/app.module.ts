@@ -27,6 +27,7 @@ import { DialogCreateAnnouncementComponent } from './dialog-create-announcement/
 import { AnnouncementFlyerComponent } from './announcement-flyer/announcement-flyer.component';
 import { AnnouncementTextComponent } from './announcement-text/announcement-text.component';
 import { DialogAnnouncementDetailComponent } from './dialog-announcement-detail/dialog-announcement-detail.component';
+import { ShowErrorComponent } from './show-error/show-error.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { DialogAnnouncementDetailComponent } from './dialog-announcement-detail/
     AnnouncementFlyerComponent,
     AnnouncementTextComponent,
     DialogAnnouncementDetailComponent,
+    ShowErrorComponent,
   ],
   imports: [
     BrowserModule,

@@ -14,47 +14,46 @@
     <div class="row">
       <!--    Flyer -->
       <div class="col-md-8">
-        <form [formGroup]="textForm">
-          <div class="modal-content">
-            <!--Header-->
-            <div class="modal-header text-left">
-              <h1>Text</h1>
-            </div>
-            <!--Body-->
-            <div class="modal-body">
 
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Title" formControlName="title">
-              </mat-form-field>
-              <br/>
-              <mat-form-field>
-                <textarea matInput placeholder="Inhalt" formControlName="content" cols="60" rows="5"></textarea>
-              </mat-form-field>
-              <br/>
-              <mat-form-field>
-                <input matInput [matDatepicker]="beginDatePicker" placeholder="Begin" formControlName="begin">
-                <mat-datepicker-toggle matSuffix [for]="beginDatePicker"></mat-datepicker-toggle>
-                <mat-datepicker #beginDatePicker></mat-datepicker>
-              </mat-form-field>
-              <br/>
-              <mat-form-field>
-                <input matInput [matDatepicker]="endDatePicker" placeholder="Ende" formControlName="end">
-                <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-                <mat-datepicker #endDatePicker></mat-datepicker>
-              </mat-form-field>
-              <br/>
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Wiederholungsrate" formControlName="rate">
-              </mat-form-field>
+        <form [formGroup]="textForm"
+              (ngSubmit)="addAnnouncement(textForm.value)">
 
-            </div>
-
-            <button class="btn-sm btn-success" (click)="addAnnouncement()">Anlegen</button>
-
+          <div class="form-group">
+            <label>Titel</label>
+            <input class="form-control" formControlName="title" id="title"/>
+            <cr-show-error text="Titel" path="title"></cr-show-error>
+          </div>
+          <div class="form-group">
+            <label>Beschreibung (max 120 Zeichen)</label>
+            <textarea class="form-control" formControlName="content" id="content" rows="5"></textarea>
+            <cr-show-error text="Beschreibung" path="content"></cr-show-error>
           </div>
 
+          <mat-form-field>
+            <input matInput [matDatepicker]="beginDatePacker" placeholder="Begin" formControlName="begin">
+            <mat-datepicker-toggle matSuffix [for]="beginDatePacker"></mat-datepicker-toggle>
+            <mat-datepicker #beginDatePacker></mat-datepicker>
+          </mat-form-field>
+          <br/>
+          <mat-form-field>
+            <input matInput [matDatepicker]="endDatePicker" placeholder="Ende" formControlName="end">
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+          </mat-form-field>
 
+          <div class="form-group">
+            <label>Wiederholung</label>
+            <input class="form-control" formControlName="repetition" id="repetition"/>
+            <cr-show-error text="Wiederholung" path="repetition"></cr-show-error>
+          </div>
+
+          <button type="submit"
+                  class="btn btn-success"
+                  [disabled]="!textForm.valid">Speichern
+          </button>
         </form>
+
+
       </div>
     </div>
   </div>

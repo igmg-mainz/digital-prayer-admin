@@ -14,56 +14,54 @@
     <div class="row">
       <!--    Flyer -->
       <div class="col-md-6">
-        <form [formGroup]="flyerForm">
 
-
-          <div class="modal-content">
-
-            <!--Header-->
-            <div class="modal-header text-left">
-              <h1>Flyer</h1>
-            </div>
-            <!--Body-->
-            <div class="modal-body">
-
-              <div class="input-group mb-3">
-                <div class="custom-file">
-                  <label class="custom-file-label" for="inputGroupFile02">Datei auswählen</label>
-                  <input type="file"
-                         class="custom-file-input"
-                         id="inputGroupFile02"
-                         accept="image/jpeg, image/png"
-                         (change)="handleFileInput($event.target.files)">
-                </div>
-              </div>
-
-              <h3>Konfiguration</h3>
-              <div class="modal-footer small">
-                <div class="form-group">
-                  <label>Wiederholung</label>
-                  <input class="form-control"
-                         formControlName="rate"/>
-                </div>
-                <mat-form-field>
-                  <input matInput [matDatepicker]="beginDatePicker" placeholder="Begin" formControlName="begin">
-                  <mat-datepicker-toggle matSuffix [for]="beginDatePicker"></mat-datepicker-toggle>
-                  <mat-datepicker #beginDatePicker></mat-datepicker>
-                </mat-form-field>
-
-                <mat-form-field>
-                  <input matInput [matDatepicker]="endDatePicker" placeholder="Ende" formControlName="end">
-                  <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-                  <mat-datepicker #endDatePicker></mat-datepicker>
-                </mat-form-field>
-
-              </div>
-            </div>
-
-            <button class="btn-sm btn-success" (click)="addAnnouncement()">Anlegen</button>
-
+        <form [formGroup]="flyerForm"
+              (ngSubmit)="addAnnouncement(flyerForm.value)">
+          <div class="form-group">
+            <label>Titel</label>
+            <input class="form-control" formControlName="title" id="title"/>
+            <cr-show-error text="Titel" path="title"></cr-show-error>
           </div>
 
+          <div class="input-group mb-3">
+            <div class="custom-file">
+              <label class="custom-file-label" for="inputGroupFile01">Datei auswählen</label>
+              <input type="file"
+                     class="custom-file-input"
+                     id="inputGroupFile01"
+                     accept="image/jpeg, image/png"
+                     (change)="handleFileInput($event.target.files)">
+            </div>
+          </div>
+          <div class="row">
+            <p id="fileName" *ngIf="fileToUpload">{{fileToUpload.name}}</p>
+            <button *ngIf="fileToUpload" class="btn btn-sm btn-danger" id="cancel" (click)="cancelImage()">x</button>
+          </div>
+
+          <mat-form-field>
+            <input matInput [matDatepicker]="beginDatePicker" placeholder="Begin" formControlName="begin">
+            <mat-datepicker-toggle matSuffix [for]="beginDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #beginDatePicker></mat-datepicker>
+          </mat-form-field>
+          <br/>
+          <mat-form-field>
+            <input matInput [matDatepicker]="endDatePicker" placeholder="Ende" formControlName="end">
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+          </mat-form-field>
+
+          <div class="form-group">
+            <label>Wiederholung</label>
+            <input class="form-control" formControlName="repetition" id="repetition"/>
+            <cr-show-error text="Wiederholung" path="repetition"></cr-show-error>
+          </div>
+
+          <button type="submit"
+                  class="btn btn-success"
+                  [disabled]="!flyerForm.valid">Speichern
+          </button>
         </form>
+
       </div>
     </div>
   </div>

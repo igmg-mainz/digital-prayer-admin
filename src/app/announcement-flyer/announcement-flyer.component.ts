@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { AnnouncementService } from '../shared/service/announcement.service';
@@ -17,22 +17,25 @@ export class AnnouncementFlyerComponent implements OnInit {
 
   constructor(private dateProvider: DatePipe,
               private router: Router,
-              private announcementService: AnnouncementService) {}
+              private announcementService: AnnouncementService) {
+  }
 
   ngOnInit() {
     this.flyerForm = new FormGroup({
-      begin: new FormControl(),
-      end: new FormControl(),
-      rate: new FormControl()
+      begin: new FormControl('', Validators.required),
+      end: new FormControl('', Validators.required),
+      title: new FormControl('', Validators.required),
+      repetition: new FormControl('', [Validators.required, Validators.minLength(1)])
     });
   }
 
 
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
+
   }
 
-  addAnnouncement() {
+  addAnnouncement(value: any) {
     const flyer = this.flyerForm.value;
     this.formData = new FormData();
     this.formData.append('file', this.fileToUpload);
@@ -42,7 +45,7 @@ export class AnnouncementFlyerComponent implements OnInit {
 
     const announcement = {
       image: { name: this.fileToUpload.name },
-      scheduler: { begin: new Date(formattedBegin), end: new Date(formattedEnd), fixedRate: flyer.rate }
+      scheduler: { begin: new Date(formattedBegin), end: new Date(formattedEnd), fixedRate: flyer.repetition }
     };
 
     this.announcementService.addImage(this.formData).subscribe(response => {
@@ -56,4 +59,7 @@ export class AnnouncementFlyerComponent implements OnInit {
     });
   }
 
+  cancelImage() {
+    this.fileToUpload = null;
+  }
 }
