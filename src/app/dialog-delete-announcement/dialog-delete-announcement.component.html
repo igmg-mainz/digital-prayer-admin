@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <h1>Announcement Löschen</h1>
+  <div id="message">
+    <span>Soll das Announcement <b>{{title}}</b> wirklich gelöscht werden?</span><br>
+    <mat-hint id="hint"> Bitte beachten, dass gelöschte Announcements nicht Wiederhergestellt werden können.</mat-hint>
+  </div>
+  <div id="buttons">
+    <button class="btn btn-lg btn-success" [mat-dialog-close]=true>Ja</button>
+    <button id="btn-abort" class="btn btn-lg btn-danger" [mat-dialog-close]=false cdkFocusInitial>Abbrechen</button>
+  </div>
+</div>

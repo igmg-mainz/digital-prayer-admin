@@ -28,6 +28,7 @@ import { AnnouncementFlyerComponent } from './announcement-flyer/announcement-fl
 import { AnnouncementTextComponent } from './announcement-text/announcement-text.component';
 import { DialogAnnouncementDetailComponent } from './dialog-announcement-detail/dialog-announcement-detail.component';
 import { ShowErrorComponent } from './show-error/show-error.component';
+import { DialogDeleteAnnouncementComponent } from './dialog-delete-announcement/dialog-delete-announcement.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ShowErrorComponent } from './show-error/show-error.component';
     AnnouncementTextComponent,
     DialogAnnouncementDetailComponent,
     ShowErrorComponent,
+    DialogDeleteAnnouncementComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,7 @@ import { ShowErrorComponent } from './show-error/show-error.component';
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
-  entryComponents: [DialogCreateAnnouncementComponent, DialogAnnouncementDetailComponent]
+  entryComponents: [DialogCreateAnnouncementComponent, DialogAnnouncementDetailComponent, DialogDeleteAnnouncementComponent]
 })
 export class AppModule {
 }

@@ -5,8 +5,8 @@ import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
-// const baseUri = 'http://localhost:8092/announcements';
-const baseUri = 'https://h2861894.stratoserver.net/services/DigitalPrayerServer/announcements';
+const baseUri = 'http://localhost:8092/announcements';
+// const baseUri = 'https://h2861894.stratoserver.net/services/DigitalPrayerServer/announcements';
 
 @Injectable({
   providedIn: 'root'

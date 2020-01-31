@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Announcement } from '../shared/model/announcement';
-import { AnnouncementService } from '../shared/service/announcement.service';
-import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
-import { DialogCreateAnnouncementComponent } from '../dialog-create-announcement/dialog-create-announcement.component';
-import { Router } from '@angular/router';
-import { DialogAnnouncementDetailComponent } from '../dialog-announcement-detail/dialog-announcement-detail.component';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Announcement} from '../shared/model/announcement';
+import {AnnouncementService} from '../shared/service/announcement.service';
+import {MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
+import {DialogCreateAnnouncementComponent} from '../dialog-create-announcement/dialog-create-announcement.component';
+import {Router} from '@angular/router';
+import {DialogAnnouncementDetailComponent} from '../dialog-announcement-detail/dialog-announcement-detail.component';
+import {DialogDeleteAnnouncementComponent} from '../dialog-delete-announcement/dialog-delete-announcement.component';
 
 
 @Component({
@@ -15,10 +16,11 @@ import { DialogAnnouncementDetailComponent } from '../dialog-announcement-detail
 export class AnnouncementsComponent implements OnInit {
 
   displayedColumns: string[] = ['created', 'type', 'identifier', 'begin', 'end', 'rate', 'button'];
+
   announcements: Announcement[] = [];
   dataSource: MatTableDataSource<Announcement>;
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   constructor(private announcementService: AnnouncementService,
               private dialog: MatDialog,
@@ -45,7 +47,7 @@ export class AnnouncementsComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogCreateAnnouncementComponent, {
       width: '250px',
-      data: { name: 'ramazan' }
+      data: {name: 'ramazan'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -54,13 +56,25 @@ export class AnnouncementsComponent implements OnInit {
   }
 
   delete(announcement: Announcement) {
-    this.announcementService.deleteAnnouncement(announcement)
-      .subscribe(response => {
-        console.log(JSON.stringify(response));
-        if (response.status === 204) {
-          this.router.navigateByUrl('');
-        }
-      });
+
+    const dialogRef = this.dialog.open(DialogDeleteAnnouncementComponent, {
+      width: '600px',
+      height: '400px',
+      data: announcement
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      if (result) {
+        this.announcementService.deleteAnnouncement(announcement)
+          .subscribe(response => {
+            console.log(JSON.stringify(response));
+            if (response.status === 204) {
+              this.router.navigateByUrl('');
+            }
+          });
+      }
+    });
   }
 
   openAnnouncementDetailDialog(announcement: Announcement) {
