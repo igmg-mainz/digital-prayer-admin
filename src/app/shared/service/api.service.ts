@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-// const baseUri = 'https://h2861894.stratoserver.net/services/DigitalPrayerServer/announcements';
-const baseUri = 'http://localhost:8092/announcements';
+const baseUri = 'https://h2861894.stratoserver.net/services/DigitalPrayerServer/announcements';
+// const baseUri = 'http://localhost:8092/announcements';
 
 @Injectable({
   providedIn: 'root'
