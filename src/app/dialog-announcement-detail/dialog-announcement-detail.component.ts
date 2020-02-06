@@ -32,7 +32,7 @@ export class DialogAnnouncementDetailComponent implements OnInit {
   }
 
   getContentOfText() {
-    return this.announcement.text.content;
+    return this.announcement.text !== null && this.announcement.text !== undefined ? this.announcement.text.content : null;
   }
 
   getBegin() {

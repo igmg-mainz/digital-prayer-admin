@@ -4,9 +4,9 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { ApiService } from './api.service';
 
-// const baseUri = 'http://localhost:8092/announcements';
-const baseUri = 'https://h2861894.stratoserver.net/services/DigitalPrayerServer/announcements';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,18 +14,20 @@ const baseUri = 'https://h2861894.stratoserver.net/services/DigitalPrayerServer/
 export class AnnouncementService {
 
   constructor(private http: HttpClient,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private apiService: ApiService) {
   }
 
   addImage(file: FormData): Observable<HttpResponse<void>> {
     const httpOptions = this.authService.getBasicWithHeader();
-    const uri = baseUri + '/image';
+    const uri =  this.apiService.announcementImage();
     return this.http.post<HttpResponse<void>>(uri, file, httpOptions);
   }
 
   downloadImage(name: string) {
     const httpOptions = this.authService.getBasicWithHeaderWithoutObserve();
-    const uri = `${baseUri}/image/${name}`;
+    const uri = this.apiService.announcementImageByName(name);
+
     return this.http.get(uri, httpOptions)
       .pipe(
         switchMap(response => {
@@ -36,17 +38,19 @@ export class AnnouncementService {
 
   addNewAnnouncement(announcement: Announcement): Observable<HttpResponse<void>> {
     const httpOptions = this.authService.getBasicWithHeader();
-    return this.http.post<HttpResponse<void>>(baseUri, announcement, httpOptions);
+    const uri = this.apiService.announcements();
+    return this.http.post<HttpResponse<void>>(uri, announcement, httpOptions);
   }
 
   getAllAnnouncements(): Observable<HttpResponse<Announcement[]>> {
     const httpOptions = this.authService.getBasicWithHeader();
-    return this.http.get<HttpResponse<Announcement[]>>(baseUri, httpOptions);
+    const uri = this.apiService.announcements();
+    return this.http.get<HttpResponse<Announcement[]>>(uri, httpOptions);
   }
 
   deleteAnnouncement(announcement: Announcement): Observable<HttpResponse<void>> {
     const httpOptions = this.authService.getBasicWithHeader();
-    const uri = `${baseUri}/${announcement.announcementId}`;
+    const uri = this.apiService.announcement(announcement.announcementId);
     return this.http.delete<HttpResponse<void>>(uri, httpOptions);
   }
 
