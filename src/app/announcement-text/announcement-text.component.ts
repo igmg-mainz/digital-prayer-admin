@@ -22,7 +22,7 @@ export class AnnouncementTextComponent implements OnInit {
         Validators.minLength(5), Validators.maxLength(120)]),
       begin: new FormControl(''),
       end: new FormControl(''),
-      repetition: new FormControl('', Validators.required)
+      repetition: new FormControl('', [Validators.required, Validators.min(5)])
     });
 
 

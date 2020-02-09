@@ -25,7 +25,7 @@ export class AnnouncementFlyerComponent implements OnInit {
       begin: new FormControl('', Validators.required),
       end: new FormControl('', Validators.required),
       title: new FormControl('', Validators.required),
-      repetition: new FormControl('', [Validators.required, Validators.minLength(1)])
+      repetition: new FormControl('', [Validators.required, Validators.min(5), Validators.max(60)])
     });
   }
 

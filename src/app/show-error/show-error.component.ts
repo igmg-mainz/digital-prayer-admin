@@ -48,6 +48,9 @@ export class ShowErrorComponent implements OnInit {
           case 'userNotFound':
             message = `Der eingetragene Benutzer existiert nicht.`;
             break;
+          case 'min':
+            message = 'Periode weniger als 5 Minuten nicht erlaubt';
+            break;
           default:
             message = `${name} ist nicht valide`;
         }

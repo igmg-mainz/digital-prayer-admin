@@ -51,8 +51,10 @@
           </mat-form-field>
 
           <div class="form-group">
-            <label>Wiederholung</label>
-            <input class="form-control" formControlName="repetition" id="repetition"/>
+            <label>Wiederholung<mat-hint><small> Periode für die Wiederholung in Minuten</small></mat-hint></label>
+            <input class="form-control"
+                   formControlName="repetition"
+                   id="repetition"/>
             <cr-show-error text="Wiederholung" path="repetition"></cr-show-error>
           </div>
 
